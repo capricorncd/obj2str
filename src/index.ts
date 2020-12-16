@@ -4,7 +4,7 @@
  * Date: 2020-12-13 17:23
  */
 import { DEF_OPTIONS, NEW_LINE } from './constants'
-import { TypeOptions, TypeObject } from '../types/index'
+import { TypeOptions, TypeObject, TypeFn } from '../types/index'
 import { space, hasSpace, isObject, isFunction, isArray, isString } from './helper'
 
 /**
@@ -43,7 +43,7 @@ function anyToStr(o: any, prefix?: string): string {
     str = handleFunction(o)
   } else if (isObject(o)) {
     str = handleObject(o)
-  } else if(isString(o)) {
+  } else if (isString(o)) {
     str = handleString(o)
   } else if (isArray(o)) {
     str = handleArray(o)
@@ -57,7 +57,7 @@ function anyToStr(o: any, prefix?: string): string {
  * handle function
  * @param fn
  */
-function handleFunction(fn: object): string {
+function handleFunction(fn: TypeFn): string {
   return fn.toString() + ','
 }
 
@@ -81,7 +81,7 @@ function objToStr(o: any, options?: TypeOptions): string {
   const { prefix, initSpaces, indentSpaces, doubleQuotes } = { ...DEF_OPTIONS, ...options }
   let level = 0
   let str: string
-  let initSpacesStr: string = space(initSpaces)
+  const initSpacesStr: string = space(initSpaces)
   const lines: string[] = anyToStr(o).split(NEW_LINE)
   const lastIndex: number = lines.length - 1
   const arr = lines.map((line, index) => {

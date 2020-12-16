@@ -16,3 +16,4 @@ export type TypeObject = {
 
 export function obj2str(obj: any, options?: TypeOptions): string;
 
+export type TypeFn = (...args: any[]) => any

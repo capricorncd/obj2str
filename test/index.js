@@ -6,11 +6,10 @@
 const { obj } = require('./test-obj')
 const { objToStr } = require('../dist/obj2str')
 
-
 const str = objToStr(obj, {
   // initSpaces: 4,
   // indentSpaces: 2,
-  prefix: 'const obj = ',
+  prefix: 'const obj = '
   // doubleQuotes: true
 })
 
@@ -19,3 +18,7 @@ console.log(str)
 console.log(objToStr(obj.fn))
 console.log(objToStr(obj.fn2))
 console.log(objToStr(obj.arr))
+
+console.log(objToStr(function () {
+  console.log('Hello world!')
+}))
