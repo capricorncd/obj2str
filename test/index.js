@@ -16,3 +16,6 @@ const str = objToStr(obj, {
 
 // console.log(JSON.stringify(obj, null, 4))
 console.log(str)
+console.log(objToStr(obj.fn))
+console.log(objToStr(obj.fn2))
+console.log(objToStr(obj.arr))

@@ -7,7 +7,7 @@ import { SPACE } from './constants'
 
 /**
  * create space string
- * @param space count
+ * @param n count
  */
 export function space(n: number): string {
   return new Array(n).fill(SPACE).join('')
@@ -25,13 +25,13 @@ export function hasSpace(str: string): boolean {
  * Determine whether str is a string
  * @param str any object
  */
-export function isString(str?: any): boolean {
+export function isString(str: any): boolean {
   return typeof str === 'string'
 }
 
 /**
  * Determine whether fn is a function
- * @param fn 
+ * @param fn
  */
 export function isFunction(fn: any): boolean {
   return typeof fn === 'function'
@@ -39,7 +39,7 @@ export function isFunction(fn: any): boolean {
 
 /**
  * Determine whether nul is null
- * @param nul 
+ * @param nul
  */
 export function isNull(nul: any): boolean {
   return nul === null
@@ -47,31 +47,15 @@ export function isNull(nul: any): boolean {
 
 /**
  * Determine whether o is an Object
- * @param o 
+ * @param o
  */
 export function isObject(o: any): boolean {
   return Object.prototype.toString.call(o) === '[object Object]' && !isFunction(o) && !isNull(o)
 }
 
 /**
- * handle string
- * @param str 
- */
-export function handleString(str: string): string {
-  return `'${str.replace(/'/g, '\\\'')}',`
-}
-
-/**
- * Determine whether o is a number
- * @param n 
- */
-export function isNumber(n: any): boolean {
-  return typeof n === 'number'
-}
-
-/**
  * Determine whether arr is an array
- * @param arr 
+ * @param arr
  */
 export function isArray(arr: any): boolean {
   return Array.isArray(arr)

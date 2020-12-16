@@ -5,11 +5,19 @@
  */
 import { DEF_OPTIONS, NEW_LINE } from './constants'
 import { TypeOptions, TypeObject } from '../types/index'
-import { space, hasSpace, handleString, isObject, isFunction, isArray, isString } from './helper'
+import { space, hasSpace, isObject, isFunction, isArray, isString } from './helper'
+
+/**
+ * handle string
+ * @param str
+ */
+export function handleString(str: string): string {
+  return `'${str.replace(/'/g, '\\\'')}',`
+}
 
 /**
  * handle object
- * @param obj 
+ * @param obj
  */
 function handleObject(obj: TypeObject): string {
   const arr: string[] = ['{']
@@ -26,8 +34,8 @@ function handleObject(obj: TypeObject): string {
 
 /**
  * any object to string
- * @param o 
- * @param prefix 
+ * @param o
+ * @param prefix
  */
 function anyToStr(o: any, prefix?: string): string {
   let str: string
@@ -55,7 +63,7 @@ function handleFunction(fn: object): string {
 
 /**
  * handle array
- * @param arr 
+ * @param arr
  */
 function handleArray(arr: any[]): string {
   const temp: string[] = arr.map(item => anyToStr(item))
@@ -66,21 +74,25 @@ function handleArray(arr: any[]): string {
 
 /**
  * object to string
- * @param o 
- * @param options 
+ * @param o
+ * @param options
  */
 function objToStr(o: any, options?: TypeOptions): string {
   const { prefix, initSpaces, indentSpaces, doubleQuotes } = { ...DEF_OPTIONS, ...options }
   let level = 0
   let str: string
   let initSpacesStr: string = space(initSpaces)
-  const arr = anyToStr(o).split(NEW_LINE).map((line, index) => {
+  const lines: string[] = anyToStr(o).split(NEW_LINE)
+  const lastIndex: number = lines.length - 1
+  const arr = lines.map((line, index) => {
     str = line.trim()
+
     // first line
     if (index === 0 && prefix) {
-      str = prefix + str 
+      str = prefix + str
     }
-    
+
+    // check object, array
     if (str.startsWith('}') || str.startsWith(']')) {
       level--
       if (level > 0 && !str.endsWith(',')) {
@@ -91,6 +103,7 @@ function objToStr(o: any, options?: TypeOptions): string {
     if (str.endsWith('{') || str.endsWith('[')) {
       level++
     }
+
     // special function code
     // fn2: function (a) { return a + a; }
     if (str.endsWith('}') && level > 0) {
@@ -109,6 +122,12 @@ function objToStr(o: any, options?: TypeOptions): string {
         .replace(/'(.*?)'/g, '"$1"')
         .replace(/__CACHE__/g, "'")
     }
+
+    // check ',' in the last line
+    if (index === lastIndex && str.endsWith(',')) {
+      str = str.substr(0, str.length - 1)
+    }
+
     return str
   })
   return arr.join(NEW_LINE)
