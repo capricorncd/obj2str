@@ -77,7 +77,7 @@ function handleArray(arr: any[]): string {
  * @param o
  * @param options
  */
-function obj2Str(o: any, options?: TypeOptions): string {
+function obj2str(o: any, options?: TypeOptions): string {
   const { prefix, initSpaces, indentSpaces, doubleQuotes } = { ...DEF_OPTIONS, ...options }
   let level = 0
   let str: string
@@ -133,9 +133,9 @@ function obj2Str(o: any, options?: TypeOptions): string {
   return arr.join(NEW_LINE)
 }
 
-const objToStr = obj2Str
+const objToStr = obj2str
 
 export {
   objToStr,
-  obj2Str
+  obj2str
 }

@@ -1,6 +1,6 @@
 {
   "name": "obj2str",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "object to string",
   "main": "dist/obj2str.js",
   "scripts": {
