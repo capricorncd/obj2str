@@ -53,7 +53,7 @@ const obj = {
   ]
 }
 
-const str = objToStr(obj, {
+const str = obj2Str(obj, {
   // initSpaces: 4,
   // indentSpaces: 2,
   prefix: 'const obj = ',
@@ -106,7 +106,7 @@ const obj = {
 
 |Method|Parameters|Description|
 |:--|:--|:--|
-|objToStr|(o: any, options?: TypeOptions)|return `string`|
+|obj2Str|(o: any, options?: TypeOptions)|return `string`|
 
 #### options
 

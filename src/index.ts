@@ -11,7 +11,7 @@ import { space, hasSpace, isObject, isFunction, isArray, isString } from './help
  * handle string
  * @param str
  */
-export function handleString(str: string): string {
+function handleString(str: string): string {
   return `'${str.replace(/'/g, '\\\'')}',`
 }
 
@@ -77,7 +77,7 @@ function handleArray(arr: any[]): string {
  * @param o
  * @param options
  */
-function objToStr(o: any, options?: TypeOptions): string {
+function obj2Str(o: any, options?: TypeOptions): string {
   const { prefix, initSpaces, indentSpaces, doubleQuotes } = { ...DEF_OPTIONS, ...options }
   let level = 0
   let str: string
@@ -133,6 +133,9 @@ function objToStr(o: any, options?: TypeOptions): string {
   return arr.join(NEW_LINE)
 }
 
+const objToStr = obj2Str
+
 export {
-  objToStr
+  objToStr,
+  obj2Str
 }
