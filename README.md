@@ -57,7 +57,8 @@ const str = obj2str(obj, {
   // initSpaces: 4,
   // indentSpaces: 2,
   prefix: 'const obj = ',
-  // doubleQuotes: true
+  // doubleQuotes: true,
+  // keyQuote: true
 })
 
 console.log(str)
@@ -80,8 +81,8 @@ const obj = {
         cc: '3333',
         c2: 'sdfsf"d"fsd',
         c3: {
-            d: 2222,
-        },
+            d: 2222
+        }
     },
     k: null,
     f: undefined,
@@ -95,10 +96,10 @@ const obj = {
         'xxx',
         {
             aa: 232434,
-            bb: 'bb',
+            bb: 'bb'
         },
-        'dsfsdf',
-    ],
+        'dsfsdf'
+    ]
 }
 ```
 
