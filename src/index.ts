@@ -12,7 +12,7 @@ import { space, hasSpace, isObject, isFunction, isArray, isString } from './help
  * @param str
  */
 function handleString(str: string): string {
-  return `'${str.replace(/'/g, '\\\'')}',`
+  return `'${str.replace(/'/g, '\\\'')}'`
 }
 
 /**
@@ -24,13 +24,32 @@ function handleObject(obj: TypeObject, keyQuote: boolean): string {
   const arr: string[] = ['{']
   let _key: string
   let temp: string
-  Object.keys(obj).forEach(key => {
+  const keys: string[] = Object.keys(obj)
+  const lastIndex: number = keys.length - 1
+  keys.forEach((key, index) => {
     _key = keyQuote || hasSpace(key) ? `'${key}'` : key
     temp = anyToStr(obj[key], keyQuote, `${_key}: `)
+    if (index === lastIndex) {
+      temp = removeLastComma(temp)
+    }
     arr.push(temp)
   })
   arr.push('}')
   return arr.join(NEW_LINE)
+}
+
+/**
+ * remove the last comma in the str
+ * @param str
+ */
+function removeLastComma(str: string) {
+  const arr = str.split(NEW_LINE)
+  const lastLine = arr.pop()
+  if (lastLine.endsWith(',')) {
+    arr.push(lastLine.substr(0, lastLine.length - 1))
+    return arr.join(NEW_LINE)
+  }
+  return str
 }
 
 /**
@@ -50,9 +69,9 @@ function anyToStr(o: any, keyQuote: boolean, prefix: string = ''): string {
   } else if (isArray(o)) {
     str = handleArray(o, keyQuote)
   } else {
-    str = o + ','
+    str = o + ''
   }
-  return prefix + str
+  return prefix + str + ','
 }
 
 /**
@@ -60,7 +79,7 @@ function anyToStr(o: any, keyQuote: boolean, prefix: string = ''): string {
  * @param fn
  */
 function handleFunction(fn: TypeFn): string {
-  return fn.toString() + ','
+  return fn.toString()
 }
 
 /**
@@ -71,7 +90,9 @@ function handleFunction(fn: TypeFn): string {
 function handleArray(arr: any[], keyQuote: boolean): string {
   const temp: string[] = arr.map(item => anyToStr(item, keyQuote))
   temp.unshift('[')
-  temp.push(']')
+  // handle the last line comma
+  const lastLine = removeLastComma(temp.pop())
+  temp.push(lastLine, ']')
   return temp.join(NEW_LINE)
 }
 
@@ -98,19 +119,10 @@ function obj2str(o: any, options?: TypeOptions): string {
     // check object, array
     if (str.startsWith('}') || str.startsWith(']')) {
       level--
-      if (level > 0 && !str.endsWith(',')) {
-        str += ','
-      }
     }
     str = space(level * indentSpaces) + str
     if (str.endsWith('{') || str.endsWith('[')) {
       level++
-    }
-
-    // special function code
-    // fn2: function (a) { return a + a; }
-    if (str.endsWith('}') && level > 0) {
-      str += ','
     }
 
     // global indent
