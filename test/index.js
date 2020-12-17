@@ -9,15 +9,19 @@ const { obj2str } = require('../dist/obj2str')
 const str = obj2str(obj, {
   // initSpaces: 4,
   // indentSpaces: 2,
-  prefix: 'const obj = '
-  // doubleQuotes: true
+  prefix: 'const obj = ',
+  doubleQuotes: true,
+  keyQuote: true
 })
 
 // console.log(JSON.stringify(obj, null, 4))
 console.log(str)
 console.log(obj2str(obj.fn))
 console.log(obj2str(obj.fn2))
-console.log(obj2str(obj.arr))
+console.log(obj2str(obj.arr, {
+  // doubleQuotes: true,
+  // keyQuote: true
+}))
 
 console.log(obj2str(function () {
   console.log('Hello world!')

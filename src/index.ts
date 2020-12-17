@@ -18,14 +18,15 @@ function handleString(str: string): string {
 /**
  * handle object
  * @param obj
+ * @param keyQuote
  */
-function handleObject(obj: TypeObject): string {
+function handleObject(obj: TypeObject, keyQuote: boolean): string {
   const arr: string[] = ['{']
   let _key: string
   let temp: string
   Object.keys(obj).forEach(key => {
-    _key = hasSpace(key) ? `'${key}'` : key
-    temp = anyToStr(obj[key], `${_key}: `)
+    _key = keyQuote || hasSpace(key) ? `'${key}'` : key
+    temp = anyToStr(obj[key], keyQuote, `${_key}: `)
     arr.push(temp)
   })
   arr.push('}')
@@ -35,22 +36,23 @@ function handleObject(obj: TypeObject): string {
 /**
  * any object to string
  * @param o
+ * @param keyQuote
  * @param prefix
  */
-function anyToStr(o: any, prefix?: string): string {
+function anyToStr(o: any, keyQuote: boolean, prefix: string = ''): string {
   let str: string
   if (isFunction(o)) {
     str = handleFunction(o)
   } else if (isObject(o)) {
-    str = handleObject(o)
+    str = handleObject(o, keyQuote)
   } else if (isString(o)) {
     str = handleString(o)
   } else if (isArray(o)) {
-    str = handleArray(o)
+    str = handleArray(o, keyQuote)
   } else {
     str = o + ','
   }
-  return (prefix || '') + str
+  return prefix + str
 }
 
 /**
@@ -64,9 +66,10 @@ function handleFunction(fn: TypeFn): string {
 /**
  * handle array
  * @param arr
+ * @param keyQuote
  */
-function handleArray(arr: any[]): string {
-  const temp: string[] = arr.map(item => anyToStr(item))
+function handleArray(arr: any[], keyQuote: boolean): string {
+  const temp: string[] = arr.map(item => anyToStr(item, keyQuote))
   temp.unshift('[')
   temp.push(']')
   return temp.join(NEW_LINE)
@@ -78,11 +81,11 @@ function handleArray(arr: any[]): string {
  * @param options
  */
 function obj2str(o: any, options?: TypeOptions): string {
-  const { prefix, initSpaces, indentSpaces, doubleQuotes } = { ...DEF_OPTIONS, ...options }
+  const { prefix, initSpaces, indentSpaces, doubleQuotes, keyQuote } = { ...DEF_OPTIONS, ...options }
   let level = 0
   let str: string
   const initSpacesStr: string = space(initSpaces)
-  const lines: string[] = anyToStr(o).split(NEW_LINE)
+  const lines: string[] = anyToStr(o, keyQuote).split(NEW_LINE)
   const lastIndex: number = lines.length - 1
   const arr = lines.map((line, index) => {
     str = line.trim()

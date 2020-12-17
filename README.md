@@ -116,3 +116,4 @@ const obj = {
 |indentSpaces|`number`|Number of spaces to indent when formatting, default: `4`|
 |prefix|`string`|Concatenation string prefix of the first line, default: `''`|
 |doubleQuotes|`boolean`|Whether the string uses double quotes, default: `false`|
+|keyQuote|`boolean`|Whether the key of the object uses quote, default: `false`|

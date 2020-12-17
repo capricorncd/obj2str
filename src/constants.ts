@@ -13,5 +13,6 @@ export const DEF_OPTIONS: TypeOptions = {
   initSpaces: 0,
   indentSpaces: 4,
   prefix: '',
-  doubleQuotes: false
+  doubleQuotes: false,
+  keyQuote: false
 }

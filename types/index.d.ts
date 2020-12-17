@@ -7,7 +7,8 @@ export type TypeOptions = {
   initSpaces?: number,
   indentSpaces?: number,
   prefix?: string,
-  doubleQuotes?: boolean
+  doubleQuotes?: boolean,
+  keyQuote?: boolean
 }
 
 export type TypeObject = {
