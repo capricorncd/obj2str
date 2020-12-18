@@ -55,7 +55,7 @@ const obj = {
 
 const str = obj2str(obj, {
   // initSpaces: 4,
-  // indentSpaces: 2,
+  // indentSpaces: 4,
   prefix: 'const obj = ',
   // doubleQuotes: true,
   // keyQuote: true
@@ -114,7 +114,7 @@ const obj = {
 |Props|Type|Description|
 |:--|:--|:--|
 |initSpaces|`number`|Default indentation space for all lines, default: `0`|
-|indentSpaces|`number`|Number of spaces to indent when formatting, default: `4`|
+|indentSpaces|`number`|Number of spaces to indent when formatting, default: `2`|
 |prefix|`string`|Concatenation string prefix of the first line, default: `''`|
 |doubleQuotes|`boolean`|Whether the string uses double quotes, default: `false`|
 |keyQuote|`boolean`|Whether the key of the object uses quote, default: `false`|

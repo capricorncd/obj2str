@@ -11,7 +11,7 @@ export const NEW_LINE: string = '\n'
 
 export const DEF_OPTIONS: TypeOptions = {
   initSpaces: 0,
-  indentSpaces: 4,
+  indentSpaces: 2,
   prefix: '',
   doubleQuotes: false,
   keyQuote: false

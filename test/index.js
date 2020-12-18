@@ -8,7 +8,7 @@ const { obj2str } = require('../dist/obj2str')
 
 const str = obj2str(obj, {
   // initSpaces: 4,
-  // indentSpaces: 2,
+  // indentSpaces: 4,
   prefix: 'const obj = ',
   doubleQuotes: true,
   keyQuote: true
