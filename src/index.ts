@@ -5,7 +5,7 @@
  */
 import { DEF_OPTIONS, NEW_LINE } from './constants'
 import { TypeOptions, TypeObject, TypeFn } from '../types/index'
-import { space, hasSpace, isObject, isFunction, isArray, isString } from './helper'
+import { space, hasSpecialCharacters, isObject, isFunction, isArray, isString } from './helper'
 
 /**
  * handle string
@@ -27,7 +27,7 @@ function handleObject(obj: TypeObject, keyQuote: boolean): string {
   const keys: string[] = Object.keys(obj)
   const lastIndex: number = keys.length - 1
   keys.forEach((key, index) => {
-    _key = keyQuote || hasSpace(key) ? `'${key}'` : key
+    _key = keyQuote || hasSpecialCharacters(key) ? `'${key}'` : key
     temp = anyToStr(obj[key], keyQuote, `${_key}: `)
     if (index === lastIndex) {
       temp = removeLastComma(temp)

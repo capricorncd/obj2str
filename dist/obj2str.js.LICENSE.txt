@@ -1,6 +1,6 @@
 /*!
- * obj2str v0.1.0
+ * obj2str v0.1.1
  * Author: Capricorncd
  * Repository: https://github.com/capricorncd/obj2str#readme
- * Released on: 2020-12-18 09:06:15
+ * Released on: 2020-12-18 10:24:39
  */

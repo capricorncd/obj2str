@@ -14,8 +14,10 @@ const obj = {
   b3: 'This\'s a test object',
   212: 'xxdfdf',
   c: {
-    cc: '3333',
-    c2: 'sdfsf"d"fsd',
+    'brace-style': 0,
+    '@typescript-eslint/no-use-before-define': 'off',
+    cD: '3333',
+    c_2: 'sdfsf"d"fsd',
     c3: {
       d: 2222
     }

@@ -14,11 +14,11 @@ export function space(n: number): string {
 }
 
 /**
- * Determine whether the string contains spaces
+ * Determine whether the string contains special characters
  * @param str string
  */
-export function hasSpace(str: string): boolean {
-  return /\s/.test(str)
+export function hasSpecialCharacters(str: string): boolean {
+  return !/^[0-9a-z_]+$/i.test(str)
 }
 
 /**

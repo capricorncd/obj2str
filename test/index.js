@@ -22,6 +22,7 @@ console.log(obj2str(obj.arr, {
   // doubleQuotes: true,
   // keyQuote: true
 }))
+console.log(obj2str(obj.c))
 
 console.log(obj2str(function () {
   console.log('Hello world!')
