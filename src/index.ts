@@ -4,7 +4,7 @@
  * Date: 2020-12-13 17:23
  */
 import { DEF_OPTIONS, NEW_LINE } from './constants'
-import { TypeOptions, TypeObject, TypeFn } from '../types/index'
+import * as Types from '../types/index'
 import { space, hasSpecialCharacters, isObject, isFunction, isArray, isString } from './helper'
 
 /**
@@ -20,7 +20,7 @@ function handleString(str: string): string {
  * @param obj
  * @param keyQuote
  */
-function handleObject(obj: TypeObject, keyQuote: boolean): string {
+function handleObject(obj: Types.IAnyObject, keyQuote: boolean): string {
   const arr: string[] = ['{']
   let _key: string
   let temp: string
@@ -58,7 +58,7 @@ function removeLastComma(str: string) {
  * @param keyQuote
  * @param prefix
  */
-function anyToStr(o: any, keyQuote: boolean, prefix: string = ''): string {
+function anyToStr(o: any, keyQuote: boolean, prefix = ''): string {
   let str: string
   if (isFunction(o)) {
     str = handleFunction(o)
@@ -78,7 +78,7 @@ function anyToStr(o: any, keyQuote: boolean, prefix: string = ''): string {
  * handle function
  * @param fn
  */
-function handleFunction(fn: TypeFn): string {
+function handleFunction(fn: Types.TypeFn): string {
   return fn.toString()
 }
 
@@ -101,7 +101,7 @@ function handleArray(arr: any[], keyQuote: boolean): string {
  * @param o
  * @param options
  */
-function obj2str(o: any, options?: TypeOptions): string {
+function obj2str<T>(o: T, options?: Types.IOptions): string {
   const { prefix, initSpaces, indentSpaces, doubleQuotes, keyQuote } = { ...DEF_OPTIONS, ...options }
   let level = 0
   let str: string

@@ -25,7 +25,7 @@ export function hasSpecialCharacters(str: string): boolean {
  * Determine whether str is a string
  * @param str any object
  */
-export function isString(str: any): boolean {
+export function isString<T>(str: T): boolean {
   return typeof str === 'string'
 }
 
@@ -33,7 +33,7 @@ export function isString(str: any): boolean {
  * Determine whether fn is a function
  * @param fn
  */
-export function isFunction(fn: any): boolean {
+export function isFunction<T>(fn: T): boolean {
   return typeof fn === 'function'
 }
 
@@ -41,7 +41,7 @@ export function isFunction(fn: any): boolean {
  * Determine whether o is an Object
  * @param o
  */
-export function isObject(o: any): boolean {
+export function isObject<T>(o: T): boolean {
   return Object.prototype.toString.call(o) === '[object Object]' && o !== null
 }
 
@@ -49,6 +49,6 @@ export function isObject(o: any): boolean {
  * Determine whether arr is an array
  * @param arr
  */
-export function isArray(arr: any): boolean {
+export function isArray<T>(arr: T): boolean {
   return Array.isArray(arr)
 }

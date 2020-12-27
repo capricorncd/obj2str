@@ -3,7 +3,7 @@
  * https://github.com/capricorncd
  * Date: 2020-12-05 11:35
  */
-export type TypeOptions = {
+export interface IOptions {
   initSpaces?: number,
   indentSpaces?: number,
   prefix?: string,
@@ -11,10 +11,10 @@ export type TypeOptions = {
   keyQuote?: boolean
 }
 
-export type TypeObject = {
+export interface IAnyObject {
   [key: string]: any
 }
 
-export function obj2str(obj: any, options?: TypeOptions): string;
+export function obj2str<T>(obj: T, options?: IOptions): string;
 
-export type TypeFn = (...args: any[]) => any
+export type TypeFn = <T>(...args: T[]) => T
