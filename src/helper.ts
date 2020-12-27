@@ -38,19 +38,11 @@ export function isFunction(fn: any): boolean {
 }
 
 /**
- * Determine whether nul is null
- * @param nul
- */
-export function isNull(nul: any): boolean {
-  return nul === null
-}
-
-/**
  * Determine whether o is an Object
  * @param o
  */
 export function isObject(o: any): boolean {
-  return Object.prototype.toString.call(o) === '[object Object]' && !isFunction(o) && !isNull(o)
+  return Object.prototype.toString.call(o) === '[object Object]' && o !== null
 }
 
 /**

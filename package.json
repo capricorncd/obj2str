@@ -1,7 +1,7 @@
 {
   "name": "obj2str",
-  "version": "0.1.1",
-  "description": "object to string",
+  "version": "0.1.2",
+  "description": "object/array/function to string",
   "main": "dist/obj2str.js",
   "scripts": {
     "test": "node test/index.js",
@@ -15,8 +15,8 @@
   },
   "keywords": [
     "obj2str",
-    "object to string",
     "to string",
+    "object to string",
     "function to string",
     "array to string"
   ],
